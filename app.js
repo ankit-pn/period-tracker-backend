@@ -61,7 +61,7 @@ app.post("/postDates", (request, response) => {
 // register endpoint
 app.get('/getDates', async (request, response) => {
     const userId = request.body.userId;
-    console.log(request.json());
+    console.log(request);
     if (userId === undefined) {
         response.json({ "dates": "userId not Found" });
     }
