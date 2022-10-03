@@ -59,13 +59,15 @@ app.post("/postDates", (request, response) => {
 });
 
 // register endpoint
-app.get('/getDates',async (request,response)=>{
+app.get('/getDates', async (request, response) => {
     const userId = request.body.userId;
-    if(userId===undefined){
-        response.json({"dates" : "userId not Found"});
+    if (userId === undefined) {
+        response.json({ "dates": "userId not Found" });
     }
-    const date = await Date.find({userId:userId});
-    response.json({"dates": date});
+    else {
+        const date = await Date.find({ userId: userId });
+        response.json({ "dates": date });
+    }
 })
 
 
