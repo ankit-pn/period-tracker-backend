@@ -65,10 +65,17 @@ app.get('/getDates', async (request, response) => {
     if (userId === undefined) {
         response.json({ "dates": "userId not Found" });
     }
-    else {
-        const date = await Date.find({ userId: userId });
-        response.json({ "dates": date });
-    }
+    // else {
+    //     const date = await Date.find({ userId: userId });
+    //     response.json({ "dates": date });
+    // }
+    else{
+    const date = await Date.find({ userId: userId })
+    const resp = await date.length ? {"dates" : date} : {"message" : "No Records Found"}
+    await response.json(resp)
+}
+
+
 })
 
 
