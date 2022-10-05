@@ -8,7 +8,7 @@ const periodSchema = new mongoose.Schema({
     date:{
         type:String ,
         required: [true,"Please provide Data"],
-        unique: [true,"Note/Mark Already Exist on that date"]
+        // unique: [true,"Note/Mark Already Exist on that date"]
     },
     note:{
         type:String,

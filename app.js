@@ -58,6 +58,32 @@ app.post("/postDates", (request, response) => {
         });
 });
 
+app.post("/delDate", async (request, response) => {
+    const userId = request.body.userId;
+    const date = request.body.date;
+    await Data.deleteOne({
+        userId: userId,
+        date: date
+    })
+    // save the new user
+    // date.save()
+        // return success if the new user is added to the database successfully
+        .then((result) => {
+            response.status(201).send({
+                message: "Date Saved Suceessfully",
+                result,
+            });
+        })
+        // catch error if the new user wasn't added successfully to the database
+        .catch((error) => {
+            response.status(500).send({
+                message: "Error Saving Date",
+                error,
+            });
+        });
+});
+
+
 // register endpoint
 app.get('/getDates', async (request, response) => {
     const userId = request.query.userId;
@@ -69,11 +95,11 @@ app.get('/getDates', async (request, response) => {
     //     const date = await Date.find({ userId: userId });
     //     response.json({ "dates": date });
     // }
-    else{
-    const date = await Date.find({ userId: userId })
-    const resp = await date.length ? {"dates" : date} : {"message" : "No Records Found"}
-    await response.json(resp)
-}
+    else {
+        const date = await Date.find({ userId: userId })
+        const resp = await date.length ? { "dates": date } : { "message": "No Records Found" }
+        await response.json(resp)
+    }
 
 
 })
