@@ -85,18 +85,14 @@ app.post("/delDate", async (request, response) => {
 
 
 // register endpoint
-app.get('/getDates', async (request, response) => {
-    const userId = request.query.userId;
-    console.log(request);
-    if (userId === undefined) {
+app.post('/getDates', async (request, response) => {
+    const uid = request.body.userId;
+    console.log(uid);
+    if (uid === undefined) {
         response.json({ "dates": "userId not Found" });
     }
-    // else {
-    //     const date = await Date.find({ userId: userId });
-    //     response.json({ "dates": date });
-    // }
     else {
-        const date = await Date.find({ userId: userId })
+        const date = await Date.find({ userId: uid })
         const resp = await date.length ? { "dates": date } : { "message": "No Records Found" }
         await response.json(resp)
     }
