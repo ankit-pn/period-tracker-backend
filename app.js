@@ -61,7 +61,7 @@ app.post("/postDates", (request, response) => {
 app.post("/delDate", async (request, response) => {
     const userId = request.body.userId;
     const date = request.body.date;
-    await Data.deleteOne({
+    await Date.deleteOne({
         userId: userId,
         date: date
     })
